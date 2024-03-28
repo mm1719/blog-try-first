@@ -1,8 +1,17 @@
+"use client"
+
 import React from 'react'
 import Link from 'next/link'
-import { FaGithub, FaLaptop } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa'
+import { signIn } from 'next-auth/react';
+
 // div wrapper
 export default function NavBar() {
+
+  const handleSignInClick = () => {
+    signIn('github'); // Specify 'github' to use the GitHub provider
+  };
+
   return (
     <nav className="bg-slate-600 p-4 sticky top-0 drop-shadow-xl z-10">
         <div className="prose prose-xl mx-auto flex justify-between flex-col sm:flex-row"> 
@@ -10,12 +19,9 @@ export default function NavBar() {
                     <Link href="/" className="text-white/90 no-underline hover:text-white">Daniel</Link>
             </h1>
             <div className="flex flex-row justify-center sm:justify-evenly align-middle gap-4 text-white text-4xl lg:text-5xl">
-                <Link className="text-white/90 hover:text-white" href="https://courses.davegray.codes/">
-                    <FaLaptop />
-                </Link>
-                <Link className="text-white/90 hover:text-white" href="https://github.com/gitdagray">
-                    <FaGithub />
-                </Link>
+              <button onClick={handleSignInClick} className="text-white/90 hover:text-white" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+                <FaGithub />
+              </button>
             </div>
         </div>
     </nav>

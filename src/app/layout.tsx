@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "@/src/app/globals.css";
 import NavBar from "@/src/app/components/NavBar";
 import MyProfilePic from "@/src/app/components/MyProfilePic";
+import { NextAuthProvider } from "@/src/app/components/Providers";
+import SessionWrapper from '@/src/app/components/SessionWrapper'
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <SessionWrapper>
     <html lang="en">
       <body className="dark:bg-slate-800">
-        <NavBar />
-        <MyProfilePic />
-        {children}
+          <NavBar />
+          <MyProfilePic />
+          {children}
       </body>
     </html>
+    </SessionWrapper>
   );
 }
