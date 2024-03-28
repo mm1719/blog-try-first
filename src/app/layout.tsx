@@ -6,7 +6,6 @@ import MyProfilePic from "@/src/app/components/MyProfilePic";
 import { NextAuthProvider } from "@/src/app/components/Providers";
 import SessionWrapper from '@/src/app/components/SessionWrapper'
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
