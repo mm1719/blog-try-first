@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import getFormattedDate from '@/lib/GetFormattedDate'
+import getFormattedDate from '@/src/app/lib/GetFormattedDate'
 // tsrfc 牛逼
 
 type Props = {
