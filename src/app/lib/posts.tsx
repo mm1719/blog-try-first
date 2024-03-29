@@ -1,3 +1,5 @@
+'use server'
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -18,28 +20,54 @@ interface GitHubIssue {
     body: string;
 }
 
-async function fetchGitHubIssues(): Promise<GitHubIssue[]> {
-    const issuesResponse = await fetch(`https://api.github.com/repos/${RepoOwner}/${RepoName}/issues`, {
+/**
+ * Fetches GitHub issues with optional pagination.
+ * 
+ * @param perPage - Number of issues per page (max 100).
+ * @param page - Page number of issues to fetch.
+ * @returns An array of GitHubIssue objects.
+ */
+
+async function fetchGitHubIssues(page?: number, perPage?: number): Promise<GitHubIssue[]> {
+  // Construct the URL with optional query parameters for pagination
+    let url = `https://api.github.com/repos/${RepoOwner}/${RepoName}/issues`;
+    const params = new URLSearchParams();
+    
+    if (perPage) params.append('per_page', perPage.toString());
+    if (page) params.append('page', page.toString());
+    
+    if (params.toString()) url += `?${params.toString()}`;
+    console.log(url);
+    const issuesResponse = await fetch(url, {
         headers: {
-          'Authorization': `Bearer ${GitHubToken}`,
+            'Authorization': `Bearer ${GitHubToken}`,
         },
     });
+
     if (!issuesResponse.ok) {
         throw new Error('GitHub API response not OK.');
     }
+
     const issues = await issuesResponse.json() as GitHubIssue[];
+    /*if (page && page > 1) {
+        console.log(issues)
+    }*/
     return issues;
 }
 
 // Function to get sorted posts data from GitHub issues
-export async function getSortedPostsData() {
-    const issues = await fetchGitHubIssues();
+export async function getSortedPostsData(page?: number, perPage?: number) {
+    const issues = await fetchGitHubIssues(page, perPage);
+    if (issues.length === 0) {
+      return null;
+    }
     const allPostsData = issues.map(issue => ({
-        id: issue.number.toString(),
-        title: issue.title,
-        date: issue.created_at,
-    })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    
+      id: issue.number.toString(),
+      title: issue.title,
+      date: issue.created_at,
+    }));
+    //.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    console.log(typeof allPostsData);
     return allPostsData;
 }
 
