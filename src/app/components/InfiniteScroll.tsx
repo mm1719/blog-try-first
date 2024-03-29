@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import ListItem from '@/src/app/components/ListItem'
+import { ListPosts } from '@/src/app/components/ListItem'
 import {getSortedPostsData} from '@/src/app/lib/posts'
 
 type Post = {
@@ -42,7 +42,7 @@ export default function InfiniteScrollPosts({ initialPosts }: { initialPosts: Po
         <h2 className="text-4xl font-bold dark:text-white/90">Blog</h2>
             <div className='flex flex-col gap-3'>
                 {posts?.map(post => (
-                    <ListItem key={post.id} post={post} />
+                    <ListPosts key={post.id} post={post} />
                 ))}
 
             {/* loading spinner */}
