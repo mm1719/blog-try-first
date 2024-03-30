@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { ListPosts } from '@/src/app/components/ListItem'
+import { ListPosts } from '@/src/app/components/ListPosts'
 import {getSortedPostsData} from '@/src/app/lib/posts'
 
 type Post = {

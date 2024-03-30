@@ -3,14 +3,8 @@ import { notFound } from 'next/navigation'
 import getFormattedDate from '@/src/app/lib/GetFormattedDate'
 import Link from 'next/link'
 import { getIssueComments } from '@/src/app/lib/comments'
-import { ListComments } from '@/src/app/components/ListItem'
-
-export async function generateStaticParams() {
-    const posts = await getSortedPostsData() // deduped!
-    return posts?.map((post) => ({
-        postId: post.id
-    }))
-}
+import { ListComments } from '@/src/app/components/ListComments'
+import MarkdownRenderer from '../../lib/markdown'
 
 export async function generateMetadata({ params }: { params: { postId: string} }) {
     const posts = await getSortedPostsData() // deduped!
@@ -56,7 +50,7 @@ export default async function Page({ params }: { params: { postId: string} }) {
                 {pubDate}
             </p>
             <article>
-                <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                <MarkdownRenderer markdownText ={contentHtml } />
                 <p>
                     <Link href="/">← Back to home</Link>
                 </p>

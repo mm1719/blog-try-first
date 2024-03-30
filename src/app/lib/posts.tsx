@@ -66,7 +66,6 @@ export async function getSortedPostsData(page?: number, perPage?: number) {
       date: issue.created_at,
     }));
     //.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    console.log(typeof allPostsData);
     return allPostsData;
 }
 

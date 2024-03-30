@@ -1,13 +1,8 @@
 import Link from 'next/link'
 import getFormattedDate from '@/src/app/lib/GetFormattedDate'
-// tsrfc 牛逼
 
 type PostProps = {
     post: Post
-}
-
-type CommentProps =  {
-    comment: IssueComment
 }
 
 export function ListPosts({ post }: PostProps) {
@@ -18,16 +13,6 @@ export function ListPosts({ post }: PostProps) {
             <Link className="underline hover:text-black/70 dark:hover:text-white" href={`/posts/${id}`}>{title}</Link>
             <br />
             <p className="text-sm mt-1">{formattedDate}</p>
-        </div>
-    )
-}
-
-export function ListComments({ comment }: CommentProps) {
-    const { body, user, created_at } = comment
-    return (
-        <div>
-            <section dangerouslySetInnerHTML={{ __html: body }} />
-            <p className="comment-author" style = {{fontSize: '12px'}}>Posted by {user.login} on {new Date(created_at).toLocaleDateString()}</p>
         </div>
     )
 }
