@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { ListPosts } from '@/src/app/components/ListPosts'
-import {getSortedPostsData} from '@/src/app/lib/posts'
+import {getSortedPostsData} from '@/src/app/lib/getPosts'
 
 type Post = {
     id: string;
@@ -19,7 +19,7 @@ export default function InfiniteScrollPosts({ initialPosts }: { initialPosts: Po
     const [ref, inView] = useInView()
     const [noPosts, setNoPosts] = useState(false)
 
-    const loadMorePosts = async () => {
+    const loadMorePosts = useCallback(async () => {
         // Directly return if no more posts are available
         if (noPosts) return;
         const newPosts = await getSortedPostsData(offset, NUMBER_OF_POSTS);
@@ -27,15 +27,15 @@ export default function InfiniteScrollPosts({ initialPosts }: { initialPosts: Po
             setNoPosts(true);
         } else {
             setPosts((prevPosts) => [...prevPosts, ...newPosts]);
-            setOffset((prevOffset) => prevOffset + 1);
+            setOffset((prevOffset) => prevOffset + NUMBER_OF_POSTS); // Adjusted to add NUMBER_OF_POSTS
         }
-    }
-
+    }, [noPosts, offset]); // Dependencies of loadMorePosts
+    
     useEffect(() => {
-        if (inView && ! noPosts) {
-            loadMorePosts()
+        if (inView && !noPosts) {
+            loadMorePosts();
         }
-      }, [inView, noPosts])
+    }, [inView, noPosts, loadMorePosts]);
 
     return (
         <section className="mt-6 mx-auto max-w-2xl">

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import getFormattedDate from '@/src/app/lib/GetFormattedDate'
+import getFormattedDate from '@/src/app/lib/getFormattedDate'
 
 type PostProps = {
     post: Post

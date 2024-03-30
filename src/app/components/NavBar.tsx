@@ -4,7 +4,6 @@ import React from 'react'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { signIn } from 'next-auth/react';
-import EditButton from '@/src/app/components/EditButton'
 import LoginName from '@/src/app/components/LoginName'
 import UserStatus from '@/src/app/components/UserStatus'
 import { useSession } from 'next-auth/react';

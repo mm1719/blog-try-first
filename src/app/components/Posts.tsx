@@ -1,5 +1,5 @@
 import InfiniteScrollPosts from "@/src/app/components/InfiniteScroll";
-import { getSortedPostsData } from "@/src/app/lib/posts";
+import { getSortedPostsData } from "@/src/app/lib/getPosts";
 
 const NUMBER_OF_POSTS = 10
 

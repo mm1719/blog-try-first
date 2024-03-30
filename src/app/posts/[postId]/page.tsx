@@ -1,10 +1,11 @@
-import { getSortedPostsData, getPostData } from '@/src/app/lib/posts'
+import { getSortedPostsData, getPostData } from '@/src/app/lib/getPosts'
 import { notFound } from 'next/navigation'
-import getFormattedDate from '@/src/app/lib/GetFormattedDate'
+import getFormattedDate from '@/src/app/lib/getFormattedDate'
 import Link from 'next/link'
 import { getIssueComments } from '@/src/app/lib/comments'
 import { ListComments } from '@/src/app/components/ListComments'
 import MarkdownRenderer from '../../lib/markdown'
+import EditButton from '@/src/app/components/EditButton'
 
 export async function generateMetadata({ params }: { params: { postId: string} }) {
     const posts = await getSortedPostsData() // deduped!
@@ -28,9 +29,9 @@ export default async function Page({ params }: { params: { postId: string} }) {
         return notFound()
     }
 
-    const { title, date, contentHtml } = await getPostData(postId)
+    const blogPost = await getPostData(postId)
     
-    const pubDate = getFormattedDate(date)
+    const pubDate = getFormattedDate(blogPost.date)
 
     const comments = await getIssueComments(postId)
     
@@ -45,12 +46,13 @@ export default async function Page({ params }: { params: { postId: string} }) {
 
     return (
         <main className="px-6 prose prose-xl prose-slate dark:prose-invert mx-auto">
-            <h1 className="text-3xl mt-4 mb-0">{title}</h1>
+            <EditButton post = {blogPost} />
+            <h1 className="text-3xl mt-4 mb-0">{blogPost.title}</h1>
             <p className="mt-0">
                 {pubDate}
             </p>
             <article>
-                <MarkdownRenderer markdownText ={contentHtml } />
+                <MarkdownRenderer markdownText ={ blogPost.contentHtml } />
                 <p>
                     <Link href="/">← Back to home</Link>
                 </p>

@@ -10,7 +10,7 @@ export function ListComments({ comment }: CommentProps) {
     return (
         <div>
             <MarkdownRenderer markdownText = {body} />
-            <p className="comment-author" style = {{fontSize: '12px'}}>Posted by {user.login} on {new Date(created_at).toLocaleDateString()}</p>
+            <p className="comment-author" style = {{marginTop: '-20px', fontSize: '12px'}}>Posted by {user.login} on {new Date(created_at).toLocaleDateString()}</p>
         </div>
     )
 }
