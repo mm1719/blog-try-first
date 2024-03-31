@@ -1,9 +1,0 @@
-{
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "https://api.github.com/repos/mm1719/blog-try-first/issues/:path*",
-        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"]
-      }
-    ]
-  }
