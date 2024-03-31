@@ -1,8 +1,7 @@
-import React from 'react';
-import { GitHubToken, RepoOwner, RepoName } from '@/src/app/lib/env'
+import React, { useState, useEffect } from 'react';
+import { RepoOwner, RepoName } from '@/src/app/lib/env'
 import { useRouter } from 'next/navigation';
 import TurndownService from 'turndown';
-
 
 interface EditPostProps {
     issue: {
@@ -16,19 +15,23 @@ interface EditPostProps {
 
 export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose, onSave }) => {
     const [title, setTitle] = React.useState(issue.title);
-    const [body, setBody] = React.useState(issue.contentHtml);
     const [error, setError] = React.useState('');
+    const [markdownContent, setMarkdownContent] = React.useState('')
     const router = useRouter();
     const turndownService = new TurndownService();
-    const markdown = turndownService.turndown(issue.contentHtml);
+
+    useEffect(() => {
+        // Initialize markdownContent state only when component mounts or issue.contentHtml changes
+        setMarkdownContent(turndownService.turndown(issue.contentHtml));
+    }, [issue.contentHtml]); // Add issue.contentHtml to the dependency array
 
     const validateAndSave = async () => {
         if (!title.trim()) {
             setError('Title must be filled out.');
             return;
         }
-        if (!body || body.trim().length < 30) {
-            setError('Body must contain at least 30 characters.');
+        if (!markdownContent || markdownContent.trim().length < 30) {
+            setError('Content must contain at least 30 characters.');
             return;
         }
         setError('');
@@ -37,7 +40,7 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose, onSave 
             repo: RepoName,
             issueNumber: issue.id, // Assuming issue.id is the GitHub issue number
             title,
-            body
+            body: markdownContent,
         };
         try {
             // Call the API route
@@ -57,7 +60,7 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose, onSave 
             }
             
             setError('');
-            await onSave(issue.id, title, body);
+            await onSave(issue.id, title, markdownContent);
             onClose();
             router.refresh();
         } catch (error) {
@@ -82,16 +85,12 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose, onSave 
                     />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="body">Content:</label>
-                    <div className = "markdown">{markdown}</div>
-                </div>
-                <div className="form-control">
                     <label htmlFor="body">Modify:</label>
                     <textarea
                         id="body"
                         rows={7}
-                        value= {body}
-                        onChange={e => setBody(e.target.value)}
+                        value= {markdownContent}
+                        onChange={e => setMarkdownContent(e.target.value)}
                     ></textarea>
                 </div>
                 <button onClick={validateAndSave}>Save</button>
