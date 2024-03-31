@@ -2,8 +2,8 @@
     "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "http://your-backend-api.com/:path*",
-        "methods": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "https://api.github.com/repos/mm1719/blog-try-first/issues/:path*",
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"]
       }
     ]
   }
