@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { GitHubToken, RepoOwner, RepoName } from '@/src/app/lib/env'
+import { RepoOwner, RepoName } from '@/src/app/lib/env'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'PATCH') {
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            'Authorization': `Bearer ${GitHubToken}`,
+            'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
             'Accept': 'application/vnd.github.v3+json',
         },
         body: JSON.stringify({

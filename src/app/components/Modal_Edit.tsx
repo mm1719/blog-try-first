@@ -17,8 +17,8 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
     const [error, setError] = useState('');
     const [markdownContent, setMarkdownContent] = useState('')
     const router = useRouter();
-    const turndownService = new TurndownService();
-
+    const turndownService = new TurndownService()
+    
     useEffect(() => {
         // Initialize markdownContent state only when component mounts or issue.contentHtml changes
         setMarkdownContent(turndownService.turndown(issue.contentHtml));

@@ -3,7 +3,7 @@
 import fetch from 'node-fetch';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { GitHubToken, RepoOwner, RepoName } from '@/src/app/lib/env'
+import { RepoOwner, RepoName } from '@/src/app/lib/env'
 
 interface GitHubComment {
     id: number;
@@ -18,7 +18,7 @@ export async function getIssueComments(id: string) {
     const url = `https://api.github.com/repos/${RepoOwner}/${RepoName}/issues/${id}/comments`;
     const commentsResponse = await fetch(url, {
         headers: {
-            'Authorization': `Bearer ${GitHubToken}`,
+            'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
         },
     });
 

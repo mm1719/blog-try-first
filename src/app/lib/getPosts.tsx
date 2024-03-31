@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 import {remark} from 'remark';
 import html from 'remark-html';
 import fetch from 'node-fetch';
-import { GitHubToken, RepoOwner, RepoName } from '@/src/app/lib/env'
+import { RepoOwner, RepoName } from '@/src/app/lib/env'
 
 //const githubToken = process.env.GITHUB_TOKEN as string;
 //const repoOwner = process.env.GITHUB_REPO_OWNER as string;
@@ -39,7 +39,7 @@ async function fetchGitHubIssues(page?: number, perPage?: number): Promise<GitHu
     console.log(url);
     const issuesResponse = await fetch(url, {
         headers: {
-            'Authorization': `Bearer ${GitHubToken}`,
+            'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
         },
     });
 
@@ -73,7 +73,7 @@ export async function getSortedPostsData(page?: number, perPage?: number) {
 export async function getPostData(id: string) {
     const issueResponse = await fetch(`https://api.github.com/repos/${RepoOwner}/${RepoName}/issues/${id}`, {
         headers: {
-          'Authorization': `Bearer ${GitHubToken}`,
+          'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
         },
     });
     if (!issueResponse.ok) {

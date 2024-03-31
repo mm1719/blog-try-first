@@ -11,6 +11,7 @@
   "dependencies": {
     "buffer": "^6.0.3",
     "dompurify": "^3.0.11",
+    "dotenv": "^16.4.5",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
     "isomorphic-dompurify": "^2.6.0",

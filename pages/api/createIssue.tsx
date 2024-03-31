@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { GitHubToken, RepoOwner, RepoName } from '@/src/app/lib/env'
+import { RepoOwner, RepoName } from '@/src/app/lib/env'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const response = await fetch(`https://api.github.com/repos/${RepoOwner}/${RepoName}/issues`, {
         method: 'POST',
         headers: {
-            'Authorization': `token ${GitHubToken}`,
+            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
             'Accept': 'application/vnd.github.v3+json',
             'Content-Type': 'application/json',
         },
