@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: { postId: string} }) {
             <p className="mt-0">
                 {pubDate}
             </p>
-            <article>
+            <article style={{wordBreak: 'break-word', overflowWrap: 'break-word'}}>
                 <MarkdownRenderer markdownText ={ blogPost.contentHtml } />
                 <p>
                     <Link href="/">← Back to home</Link>
