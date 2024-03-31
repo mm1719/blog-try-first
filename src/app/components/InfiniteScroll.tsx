@@ -39,7 +39,6 @@ export default function InfiniteScrollPosts({ initialPosts }: { initialPosts: Po
 
     return (
         <section className="mt-6 mx-auto max-w-2xl">
-        <h2 className="text-4xl font-bold dark:text-white/90">Blog</h2>
             <div className='flex flex-col gap-3'>
                 {posts?.map(post => (
                     <ListPosts key={post.id} post={post} />

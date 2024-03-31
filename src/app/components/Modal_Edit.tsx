@@ -10,10 +10,9 @@ interface EditPostProps {
         contentHtml: string,
     };
     onClose: () => void;
-    onSave: (id: string, title: string, body: string) => Promise<void>;
 }
 
-export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose, onSave }) => {
+export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
     const [title, setTitle] = React.useState(issue.title);
     const [error, setError] = React.useState('');
     const [markdownContent, setMarkdownContent] = React.useState('')
@@ -60,7 +59,6 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose, onSave 
             }
             
             setError('');
-            await onSave(issue.id, title, markdownContent);
             onClose();
             router.refresh();
         } catch (error) {

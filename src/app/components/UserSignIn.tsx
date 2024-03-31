@@ -4,8 +4,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { FaGithub } from 'react-icons/fa';
 import Image from 'next/image';
 
-
-const UserStatus = () => {
+const UserSignIn = () => {
     const { data: session } = useSession();
 
     const handleSignInClick = () => {
@@ -31,11 +30,11 @@ const UserStatus = () => {
         );
     } else {
         return (
-            <button onClick={handleSignInClick} className="text-white/90 hover:text-white" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', position: 'absolute', top: '15px', right: '0px'}}>
-                <FaGithub />
+            <button className="text-white/90 hover:text-white" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', position: 'absolute', top: '15px', right: '0px'}}>
+                <FaGithub onClick={handleSignInClick}/>
             </button>
         );
     }
 };
 
-export default UserStatus;
+export default UserSignIn;

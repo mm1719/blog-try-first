@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { signIn } from 'next-auth/react';
 import LoginName from '@/src/app/components/LoginName'
-import UserStatus from '@/src/app/components/UserStatus'
+import UserSignIn from '@/src/app/components/UserSignIn'
 import { useSession } from 'next-auth/react';
 
 // div wrapper
@@ -19,7 +19,7 @@ export default function NavBar() {
             </h1>
             <div className="flex flex-row justify-center sm:justify-evenly align-middle gap-4 text-white text-4xl lg:text-5xl">
                 <div>
-                  <UserStatus />
+                  <UserSignIn />
                 </div>
             </div>
         </div>

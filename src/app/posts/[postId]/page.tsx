@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { getIssueComments } from '@/src/app/lib/comments'
 import { ListComments } from '@/src/app/components/ListComments'
 import MarkdownRenderer from '../../lib/markdown'
-import EditButton from '@/src/app/components/EditButton'
+import EditButton from '@/src/app/components/Button_Edit'
+import DeleteButton from '@/src/app/components/Button_Delete'
 
 export async function generateMetadata({ params }: { params: { postId: string} }) {
     const posts = await getSortedPostsData() // deduped!
@@ -46,6 +47,7 @@ export default async function Page({ params }: { params: { postId: string} }) {
 
     return (
         <main className="px-6 prose prose-xl prose-slate dark:prose-invert mx-auto">
+            <DeleteButton post = {blogPost} />
             <EditButton post = {blogPost} />
             <h1 className="text-3xl mt-4 mb-0">{blogPost.title}</h1>
             <p className="mt-0">

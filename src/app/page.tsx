@@ -9,6 +9,7 @@ export default function Home() {
           I&apos;m <span className="font-bold">Daniel</span>.
         </span>
       </p>
+      <h2 className="text-4xl font-bold dark:text-white/90">My Posts</h2>
       <Posts />
     </main>
   );
