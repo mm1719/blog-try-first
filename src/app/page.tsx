@@ -1,5 +1,4 @@
 import Posts from "@/src/app/components/Posts"
-import LoginName from "@/src/app/components/LoginName";
 export default function Home() {
   return (
     <main>

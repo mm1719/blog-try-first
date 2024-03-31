@@ -4,7 +4,6 @@ import React from 'react'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { signIn } from 'next-auth/react';
-import LoginName from '@/src/app/components/LoginName'
 import UserSignIn from '@/src/app/components/UserSignIn'
 import { useSession } from 'next-auth/react';
 
