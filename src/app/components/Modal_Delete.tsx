@@ -57,7 +57,7 @@ export const DeleteConfirmModal: React.FC<DeletePostProps> =({ issue, onClose })
                 .modal-content {
                     flex-direction: column;
                     align-items: start;
-                    background-color: #f0f0f0;
+                    background-color: #1e1e1e;
                     margin: 10% auto;
                     padding: 20px;
                     border: 1px solid #ccc;

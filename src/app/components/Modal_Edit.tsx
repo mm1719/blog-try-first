@@ -107,7 +107,7 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
                 .modal-content {
                     flex-direction: column;
                     align-items: start;
-                    background-color: #f0f0f0;
+                    background-color: #1e1e1e;
                     margin: 10% auto;
                     padding: 20px;
                     border: 1px solid #ccc;
@@ -123,9 +123,13 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
                     text-align: left; // Explicitly aligns text to the left
                 }
                 input {
+                    background-color: #3d3d3d;
+                    border: 5px solid #3d3d3d;
                     width: 100%;
                 }
                 textarea {
+                    background-color: #3d3d3d;
+                    border: 1px solid #3d3d3d;
                     width: 100%; // Make textarea span the full width of its container
                     padding: 8px;
                     font-size: 16px; // Adjust font size as needed
