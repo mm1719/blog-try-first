@@ -1,77 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { RepoOwner, RepoName } from '@/src/app/lib/env'
 import { useRouter } from 'next/navigation';
-import TurndownService from 'turndown';
 
-interface EditPostProps {
-    issue: {
-        id: string,
-        title: string,
-        contentHtml: string,
-    };
+interface CreatePostProps {
     onClose: () => void;
 }
 
-export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
-    const [title, setTitle] = useState(issue.title);
+export const CreatePostModal: React.FC<CreatePostProps> = ({ onClose }) => {
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
     const [error, setError] = useState('');
-    const [markdownContent, setMarkdownContent] = useState('')
     const router = useRouter();
-    const turndownService = new TurndownService();
 
-    useEffect(() => {
-        // Initialize markdownContent state only when component mounts or issue.contentHtml changes
-        setMarkdownContent(turndownService.turndown(issue.contentHtml));
-    }, [issue.contentHtml]); // Add issue.contentHtml to the dependency array
-
-    const validateAndSave = async () => {
+    const handleCreateIssue = async () => {
         if (!title.trim()) {
             setError('Title must be filled out.');
             return;
         }
-        if (!markdownContent || markdownContent.trim().length < 30) {
+        if (!body || body.trim().length < 30) {
             setError('Content must contain at least 30 characters.');
             return;
         }
         setError('');
-        const issueData = {
-            owner: RepoOwner,
-            repo: RepoName,
-            issueNumber: issue.id, // Assuming issue.id is the GitHub issue number
-            title,
-            body: markdownContent,
-        };
+
         try {
-            // Call the API route
-            const response = await fetch('/api/updateIssue', {
+            const response = await fetch('/api/createIssue', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(issueData),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, body }),
             });
     
             if (!response.ok) {
-                // If the response is not OK, try to parse and log the response body for more details
-                const errorBody = await response.text(); // Using .text() in case the response is not JSON-formatted
-                console.error('Response error:', errorBody); // Log the raw error response
-                throw new Error(`Failed to update the issue: ${response.statusText}`);
+                // Handle error
+                console.error('Failed to create the issue');
+                return;
             }
-            
             setError('');
             onClose();
             router.refresh();
-        } catch (error) {
+        } catch (error){
             console.error('Fetch error:', error);
-            setError('An error occurred while updating the issue.');
+            setError('An error occurred while creating the issue.');
         }
     };
-
     return (
         <div className="modal">
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                <h3>Edit Post</h3>
+                <h3>Create Post</h3>
                 {error && <div className="error">{error}</div>}
                 <div className="form-control">
                     <label htmlFor="title">Title:</label>
@@ -83,15 +59,15 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
                     />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="body">Modify:</label>
+                    <label htmlFor="body">Content:</label>
                     <textarea
                         id="body"
                         rows={7}
-                        value= {markdownContent}
-                        onChange={e => setMarkdownContent(e.target.value)}
+                        value= {body}
+                        onChange={e => setBody(e.target.value)}
                     ></textarea>
                 </div>
-                <button onClick={validateAndSave}>Save</button>
+                <button onClick={handleCreateIssue}>Create</button>
             </div>
             <style jsx>{`
                 .modal {
@@ -160,5 +136,5 @@ export const EditPostModal: React.FC<EditPostProps> = ({ issue, onClose }) => {
             `}
             </style>
         </div>
-    );
+    )
 }

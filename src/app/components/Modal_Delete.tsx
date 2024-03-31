@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface DeletePostProps {
@@ -9,7 +9,7 @@ interface DeletePostProps {
 }
 
 export const DeleteConfirmModal: React.FC<DeletePostProps> =({ issue, onClose }) => {
-    const [error, setError] = React.useState('')
+    const [error, setError] = useState('')
     const router = useRouter()
 
     const handleDelete = async () => {
