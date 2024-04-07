@@ -1,4 +1,5 @@
 # Dcard 2024 Frontend Intern Homework
+**不要用上面的vercel部署，要啟動需用下面的網址(因為更新好 readme 後又要修改 Vercel 和 Github Token 的環境變數，好麻煩)**
 本次實作以我自己的github帳號作為editor，並以這個repo的issue作為部落格的demo。
 所以除非在本地端更改環境內容，不然就只能在部署的網址當visitor了QQ。
 後面會附上editor模式的錄影或截圖。
