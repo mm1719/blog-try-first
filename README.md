@@ -19,8 +19,8 @@ NEXT_PUBLIC_GITHUB_REPO_NAME=
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=
 ```
-2. 另外必須在 `src/app/lib/env.tsx` 更改欲使用的owner跟repo名稱，如此才能完整操作部落格文章的新增/刪除/編輯。
-3. `src/app/api/auth/[...nextauth]/route.tsx` 把這行後面的帳號名稱改掉:
+2. 在 `src/app/lib/env.tsx` 更改欲使用的owner跟repo名稱，如此才能完整操作部落格文章的新增/刪除/編輯。
+3. 在 `src/app/api/auth/[...nextauth]/route.tsx` 把這行後面的帳號名稱改掉:
 ```
 const isWriter = (profile as any).login ===
 ```
