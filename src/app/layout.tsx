@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <SessionWrapper>
     <html lang="en">
-      <body className="dark:bg-slate-800">
+      <body className="bg-dcardDark">
           <NavBar />
           <MyProfilePic />
           {children}

@@ -10,8 +10,10 @@ export default function Home() {
           I&apos;m <span className="font-bold">Daniel</span>.
         </span>
       </p>
-      <p className="mt-6 mx-auto max-w-2xl dark:text-white"><CreateButton /></p>
-      <h2 className="mt-6 mx-auto max-w-2xl text-4xl font-bold dark:text-white">My Posts</h2>
+      <div className="mx-auto max-w-2xl dark:text-white flex justify-between items-end">
+          <h2 className="text-4xl font-bold">My Posts</h2>
+          <p style={{marginBottom: "25px"}}><CreateButton /></p>
+      </div>
       <Posts />
     </main>
   );

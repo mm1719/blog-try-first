@@ -13,6 +13,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        dcardDark: '#00324E',
+        dcardLight: '#005A8D',
+      },
     },
   },
   plugins: [
