@@ -102,3 +102,7 @@ https://blog-try-first-lc1yktj8f-masonys-projects.vercel.app/
 - 在新增/刪除文章後需要刷新主頁面(列表頁)才會更新。
 - 沒有調整 Web Vitals 評分。
 - 在 Vercel 用 作者的功能會有個怪怪的問題(刪除文章的部分很玄)，但在 localhost 就可以。
+
+
+## Demo 影片
+拍得有點陽春: https://drive.google.com/file/d/1zPlg8NB_rxf4PPTu7lvigBtcsZRnjwOS/view?usp=sharing
