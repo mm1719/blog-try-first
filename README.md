@@ -49,7 +49,9 @@ https://blog-try-first-lc1yktj8f-masonys-projects.vercel.app/
 3. `src/app/components/UserSignIn.tsx` 呼叫 `signIn('github')`
 4. `src/app/api/auth/[...nextauth]/route.tsx` 處理 Github 登入。
 5. 改好後回到 `src/app/components/UserSignIn.tsx` 會將 icon 改成 Github 的大頭貼。
+
 **再次點擊沒有其他效果喔(沒有做登出的選項)**
+
 (`scope`的部分我沒有看得很明白，但我有紀錄信箱)
 
 #### User Interface (不包含作者的功能)
