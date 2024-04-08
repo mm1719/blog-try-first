@@ -70,7 +70,7 @@ https://blog-try-first-lc1yktj8f-masonys-projects.vercel.app/
 2. `src/app/posts/[postId]/page.tsx` 為文章頁面，以及相關程式一併介紹:
     - `src/app/lib/getPosts.tsx` 的 `getSortedPostsData()` 驗證文章在不在此，`getPostData()` 取出文章內容。
     - `src/app/posts/[postId]/not-found.tsx` 功能如其名。
-    - `src/app/lib/getFormattedDate.tsx` 的功能同 [列表頁](https://github.com/mm1719/blog-try-first/tree/master?tab=readme-ov-file#%E5%88%97%E8%A1%A8%E9%A0%81) 的敘述。
+    - `src/app/lib/getFormattedDate.tsx` 的功能同 [列表頁](https://github.com/mm1719/blog-try-first?tab=readme-ov-file#%E5%88%97%E8%A1%A8%E9%A0%81) 的敘述。
     - `src/app/lib/getComments.tsx` 利用 fetch 的方式從 Github Repo 的 Issue 取得留言。
     - `src/app/components/ListComments.tsx` render 出留言列表。
     - `src/app/components/MarkdownRenderer.tsx` 將文章和留言的 html markdown render 出來。
