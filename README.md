@@ -66,7 +66,7 @@ https://blog-try-first-lc1yktj8f-masonys-projects.vercel.app/
 
 #### 文章頁
 這部分從 `ListPosts.tsx` 開始並用 html markdown 實作，這邊的東西有點雜亂: 
-1. `src/app/components/ListPosts.tsx` 的 `<Link href={`/posts/${id}`}>{title}</Link>` 進入文章內容。
+1. `src/app/components/ListPosts.tsx` 的 ``<Link href={`/posts/${id}`}>{title}</Link>`` 進入文章內容。
 2. `src/app/posts/[postId]/page.tsx` 為文章頁面，以及相關程式一併介紹:
     - `src/app/lib/getPosts.tsx` 的 `getSortedPostsData()` 驗證文章在不在此，`getPostData()` 取出文章內容。
     - `src/app/posts/[postId]/not-found.tsx` 功能如其名。
